@@ -1,5 +1,5 @@
 services:
-  - type: web
+  - type: worker        # <-- यहाँ web की जगह worker
     name: courses-bot
     env: python
     plan: free

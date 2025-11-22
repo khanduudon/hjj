@@ -40,6 +40,24 @@ user_state = {}      # chat_id -> "await_batch" / "await_course_id" / None
 user_batches = {}    # chat_id -> list_of_batches (from /courses/active)
 user_selected = {}   # chat_id -> selected batch object
 
+app = Flask("render_web")
+def safe_send(send_func, *args, **kwargs):
+    try:
+        return send_func(*args, **kwargs)
+    except Exception as e:
+        print(f"[safe_send error] {e}")
+        return None
+
+
+
+@app.route("/")
+def home():
+    return "✅ Bot is running on Render!"
+
+def run_flask():
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
+
 # Logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 

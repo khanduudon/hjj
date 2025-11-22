@@ -24,8 +24,12 @@ from flask import Flask
 from telebot.apihelper import ApiTelegramException
 
 # ---------------- CONFIG ----------------
-BOT_TOKEN = "8555830501:AAHUlM8DbKC-oWKl1JE1VDKILUNJjlanIhE"   # <-- REPLACE with your Bot token
+BOT_TOKEN = "8555830501:AAHUlM8DbKC-oWKl1JE1VDKILUNJjlanIhE" # <-- REPLACE with your Bot token
 BASE_URL = "https://backend.multistreaming.site/api"
+
+bot = telebot.TeleBot(TOKEN)
+bot.remove_webhook()
+
 USER_ID_FOR_ACTIVE = "1448640"
 BASE_HEADERS = {
     "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"

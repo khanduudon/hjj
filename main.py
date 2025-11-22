@@ -20,6 +20,8 @@ import json
 import requests
 import telebot
 import re
+from flask import Flask
+from telebot.apihelper import ApiTelegramException
 
 # ---------------- CONFIG ----------------
 BOT_TOKEN = "8555830501:AAHUlM8DbKC-oWKl1JE1VDKILUNJjlanIhE"   # <-- REPLACE with your Bot token

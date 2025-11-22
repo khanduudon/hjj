@@ -56,10 +56,6 @@ def safe_send(send_func, *args, **kwargs):
 def home():
     return "✅ Bot is running on Render!"
 
-def run_flask():
-    port = int(os.environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=port)
-
 # Logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
@@ -470,8 +466,19 @@ def fallback(message):
 
 
 # ---------------- RUN ----------------
+from threading import Thread
+
 if __name__ == "__main__":
     logging.info("Bot starting...")
+
+    # Flask को separate thread में चलाओ ताकि Render port detect कर सके
+    def run_flask():
+        port = int(os.environ.get("PORT", 10000))
+        app.run(host="0.0.0.0", port=port)
+
+    Thread(target=run_flask, daemon=True).start()
+
+    # Bot start
     try:
         bot.infinity_polling(timeout=60, long_polling_timeout=60)
     except KeyboardInterrupt:

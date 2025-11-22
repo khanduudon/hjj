@@ -27,7 +27,6 @@ from telebot.apihelper import ApiTelegramException
 BOT_TOKEN = "8555830501:AAHUlM8DbKC-oWKl1JE1VDKILUNJjlanIhE" # <-- REPLACE with your Bot token
 BASE_URL = "https://backend.multistreaming.site/api"
 
-bot = telebot.TeleBot(TOKEN)
 bot.remove_webhook()
 
 USER_ID_FOR_ACTIVE = "1448640"
